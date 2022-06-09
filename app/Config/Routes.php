@@ -93,8 +93,16 @@ $routes->group("internal", ["namespace" => "App\Controllers\Internal"], function
     //Reservation
     $routes->get('reservations', 'ReservationController::index',['filter'=>'authAdmin']);
 
-    // Curriculum vitae
-    $routes->get('cv', 'CurriculumVitae::index', ['filter'=>'authAdmin']);
+    // Curriculum vitae CRUD
+    $routes->get('cv', 'CurriculumVitaeController::index', ['filter'=>'authAdmin']);
+    $routes->get('cv/create', 'CurriculumVitaeController::create', ['filter'=>'authAdmin']);
+    $routes->post('cv/store', 'CurriculumVitaeController::store', ['filter'=>'authAdmin']);
+    $routes->get('cv/edit/(:num)', 'CurriculumVitaeController::edit/$1', ['filter'=>'authAdmin']);
+    $routes->post('cv/update/(:num)', 'CurriculumVitaeController::update/$1', ['filter'=>'authAdmin']);
+    $routes->get('cv/delete/(:num)', 'CurriculumVitaeController::delete/$1', ['filter'=>'authAdmin']);
+    $routes->get('cv/export-excel', 'CurriculumVitaeController::exportExcelAll', ['filter'=>'authAdmin']);
+    $routes->get('cv/export-pdf', 'CurriculumVitaeController::exportPdfAll', ['filter'=>'authAdmin']);
+    $routes->get('cv/export-pdf/(:num)', 'CurriculumVitaeController::exportPdf/$1', ['filter'=>'authAdmin']);
 });
 /*
  * --------------------------------------------------------------------
